@@ -8,9 +8,11 @@ local opt = {noremap = true, silent = true }
 -- 之后就可以这样映射按键了
 -- map('模式','按键','映射为XX',opt)
 
---测试
---map("n", "<leader>pp", ":set nonumber<CR>", opt)
 map("i", "jj", "<Esc>", opt)
+
+--startify
+map("n", "<leader>h", ":Startify<CR>", opt)
+
 
 -- sv 水平分屏
 -- sh 垂直分屏
@@ -22,10 +24,10 @@ map("n", "sc", "<C-w>c", opt)
 map("n", "so", "<C-w>o", opt) -- close others
 
 -- alt + hjkl 在窗口之间跳转
-map("n", "<A-h>", "<C-w>h", opt)
-map("n", "<A-j>", "<C-w>j", opt)
-map("n", "<A-k>", "<C-w>k", opt)
-map("n", "<A-l>", "<C-w>l", opt)
+-- map("n", "<A-h>", "<C-w>h", opt)
+-- map("n", "<A-j>", "<C-w>j", opt)
+-- map("n", "<A-k>", "<C-w>k", opt)
+-- map("n", "<A-l>", "<C-w>l", opt)
 -- 水平分屏很常用，比如 svgd 命令相当于 打开右侧窗口进入方法的定义，看完可以随手 sc 关闭掉。
 
 

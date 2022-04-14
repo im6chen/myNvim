@@ -3,10 +3,24 @@ set nocompatible
 call plug#begin()
 " -----------------------------------------------
 "  startify
+let g:startify_lists = [
+      \ { 'type': 'files',     'header': ['   近期文件']            },
+      \ { 'type': 'dir',       'header': ['   近期文件 '. getcwd()] },
+      \ { 'type': 'sessions',  'header': ['   会话窗口']       },
+      \ { 'type': 'bookmarks', 'header': ['   书签']      },
+      \ { 'type': 'commands',  'header': ['   命令']       },
+      \ ]
+let g:startify_bookmarks = [ {'c': '~/.config/nvim/'}, {'g': '~/go/src/'}, '~/.zshrc' ]
+let g:startify_commands = [
+    \ ':help reference',
+    \ ['Vim Reference', 'h ref'],
+    \ {'h': 'h ref'},
+    \ {'m': ['My magical function', 'call Magic()']},
+    \ ]
 let g:startify_files_number = 5
 let g:startify_session_autoload = 1
 let g:startify_custom_header = [
-   \' ╭─────────────────────────────────────────────╮', 
+   \' ╭─────────────────────────────────────────────╮',
    \' │                                             │ ',
    \' │  ██████╗  ██████╗██╗  ██╗███████╗███╗   ██╗ │ ',
    \' │ ██╔════╝ ██╔════╝██║  ██║██╔════╝████╗  ██║ │ ',
@@ -15,7 +29,7 @@ let g:startify_custom_header = [
    \' │ ╚██████╔╝╚██████╗██║  ██║███████╗██║ ╚████║ │ ',
    \' │  ╚═════╝  ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝ │ ',
    \' │                                   --liuchen.│ ',
-   \' ╰─────────────────────────────────────────────╯ ', 
+   \' ╰─────────────────────────────────────────────╯ ',
    \]
 " -----------------------------------------------
 " 配色方案
@@ -36,6 +50,17 @@ colorscheme neodark
 
 " Vim状态栏插件，包括显示行号，列号，文件类型，文件名，以及Git状态
 Plug 'vim-airline/vim-airline'
+  let g:airline_left_sep=''
+  let g:airline_right_sep=''
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+" let g:airline#extensions#tabline#show_tab_nr = 1
+" let g:airline#extensions#tabline#formatter = 'default'
+" let g:airline#extensions#tabline#buffer_nr_show = 1
+" let g:airline#extensions#tabline#fnametruncate = 16
+" let g:airline#extensions#tabline#fnamecollapse = 2
+" let g:airline#extensions#tabline#buffer_idx_mode = 1
+
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -177,6 +202,9 @@ call plug#end()
 "let mapleader = ','
 "set ts=4
 "set expandtab
+imap <C-j>     <Plug>(neosnippet_expand_or_jump)
+smap <C-j>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-j>     <Plug>(neosnippet_expand_target)
 
 " tab标签切换
 "noremap <tab>m :tabnew<cr>

@@ -1,18 +1,51 @@
+local lspkind = require('lspkind')
 local cmp = require'cmp'
+
 cmp.setup {
-    -- 必须指定 snippet 组件
-    snippet = {
-        expand = function(args) vim.fn['vsnip#anonymous'](args.body) end,
-    },
-    -- 配置补全内容来源
-    sources = cmp.config.sources {
-    -- 支持从打开的文件中补全内容
-        { name = 'buffer', options = { get_bufnrs = vim.api.nvim_list_bufs } },
-	-- 支持从 lsp 服务补全
-        { name = 'nvim_lsp' },
-	-- 支持补全文件路径，可以输入 / 或者 ~ 体验
-        { name = 'path' },
-    },
+  -- 指定 snippet 引擎
+  snippet = {
+    expand = function(args)
+      -- For `vsnip` users.
+      vim.fn["vsnip#anonymous"](args.body)
+
+      -- For `luasnip` users.
+      -- require('luasnip').lsp_expand(args.body)
+
+      -- For `ultisnips` users.
+      -- vim.fn["UltiSnips#Anon"](args.body)
+
+      -- For `snippy` users.
+      -- require'snippy'.expand_snippet(args.body)
+    end,
+  },
+  -- 来源
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    -- For vsnip users.
+    { name = 'vsnip' },
+    -- For luasnip users.
+    -- { name = 'luasnip' },
+    --For ultisnips users.
+    -- { name = 'ultisnips' },
+    -- -- For snippy users.
+    -- { name = 'snippy' },
+}, { { name = 'buffer' },
+       { name = 'path' }
+    }),
+-- cmp.setup {
+--     -- 必须指定 snippet 组件
+--     snippet = {
+--         expand = function(args) vim.fn['vsnip#anonymous'](args.body) end,
+--     },
+--     -- 配置补全内容来源
+--     sources = cmp.config.sources {
+--     -- 支持从打开的文件中补全内容
+--         { name = 'buffer', options = { get_bufnrs = vim.api.nvim_list_bufs } },
+-- 	-- 支持从 lsp 服务补全
+--         { name = 'nvim_lsp' },
+-- 	-- 支持补全文件路径，可以输入 / 或者 ~ 体验
+--         { name = 'path' },
+--     },
 
 
     mapping = {
